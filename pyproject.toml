@@ -20,22 +20,33 @@ son = "son.main:cli"
 [tool.poetry.group.lint.dependencies]
 ruff = "^0.4.1"
 
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.7.0"
+commitizen = "^3.24.0"
+
 [tool.ruff]
 line-length = 120
 target-version = "py38"
 
 [tool.ruff.lint]
 extend-select = [
-  "UP",  # pyupgrade
-  "I",   # isort
-  "S",   # flake8-bandit
-  "B",   # flake8-bugbear
-  "C90", # McCabe complexity
-  "RUF"
+    "UP", # pyupgrade
+    "I", # isort
+    "S", # flake8-bandit
+    "B", # flake8-bugbear
+    "C90", # McCabe complexity
+    "RUF"
 ]
 
 [tool.ruff.format]
 quote-style = "single"
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "$version"
+version_scheme = "semver"
+version_provider = "poetry"
+major_version_zero = true
 
 [build-system]
 requires = ["poetry-core"]
