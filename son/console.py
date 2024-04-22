@@ -1,5 +1,6 @@
 import math
 import time
+from pathlib import Path
 
 from rich.console import Console
 from rich.progress import track
@@ -18,7 +19,7 @@ console = Console(theme=custom_theme)
 error_console = Console(theme=Theme({'error': Style(color='red')}), stderr=True)
 
 
-def show_play_progress(duration: float, filename: str, transient: bool = False) -> None:
+def show_play_progress(duration: float, filename: Path, transient: bool = False) -> None:
     # a fraction of a second is not really important, we just consider the lower integer
     # value for simplicity
     duration = math.floor(duration)
