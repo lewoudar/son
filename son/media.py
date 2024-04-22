@@ -1,3 +1,4 @@
+# ruff: noqa: S603, S607
 import re
 import subprocess
 from datetime import datetime, timedelta

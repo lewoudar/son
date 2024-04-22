@@ -1,10 +1,10 @@
-import time
 import math
+import time
 
 from rich.console import Console
+from rich.progress import track
 from rich.style import Style
 from rich.theme import Theme
-from rich.progress import track
 
 data = {
     'warning': Style(color='yellow'),

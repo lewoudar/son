@@ -5,7 +5,7 @@ from pathlib import Path
 import click
 import shellingham
 
-from son.console import error_console, console
+from son.console import console, error_console
 
 SHELLS = ['bash', 'zsh', 'fish']
 
@@ -45,8 +45,7 @@ def install_fish() -> None:
 
     try:
         command = '_SON_COMPLETE=fish_source son'
-        # bandit complains about shell injection, but we are not using untrusted string here, so it is fine.
-        result = subprocess.run(command, shell=True, capture_output=True, check=True)  # nosec
+        result = subprocess.run(command, shell=True, capture_output=True, check=True)
     except subprocess.CalledProcessError:
         error_console.print('[error]Unable to get completion script for son cli.')
         raise SystemExit(1) from None
