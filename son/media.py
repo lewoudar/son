@@ -18,14 +18,11 @@ def get_seconds_from_str_time(str_time: str) -> float:
 
 
 def get_media_duration(filename: str) -> float:
-    try:
-        result = subprocess.run(['ffmpeg', '-i', filename], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=True)
-    except subprocess.CalledProcessError as e:
-        error_console.print(f'[error]unable to get media duration, reason:\n{e.stdout.decode()}')
-        raise SystemExit(1) from None
-
+    result = subprocess.run(['ffmpeg', '-i', filename], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     output = result.stdout.decode()
     matches = re.search(r'Duration: (\d{2}:\d{2}:\d{2}.\d{2})', output)
-    # there should be no reason we don't parse the duration if the command executes successfully,
-    # so we don't add an "if" condition to check the matches
-    return get_seconds_from_str_time(matches.group(1))
+    if matches:
+        return get_seconds_from_str_time(matches.group(1))
+
+    error_console.print(f'[error]Unable not parse duration for file: {filename}, ffmpeg output\n: {output}')
+    raise SystemExit(1)
