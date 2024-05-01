@@ -3,6 +3,7 @@ from click_didyoumean import DYMGroup
 
 from son.commands.completion import install_completion
 from son.commands.play import play
+from son.commands.to_wav import to_wav
 from son.settings import Settings
 
 
@@ -43,5 +44,5 @@ def cli(context: click.Context):
     context.obj = Container()
 
 
-for command in [install_completion, play]:
+for command in [install_completion, play, to_wav]:
     cli.add_command(command)

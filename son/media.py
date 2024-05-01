@@ -32,8 +32,8 @@ def get_media_duration(audio_file: Path) -> float:
     raise SystemExit(1)
 
 
-def convert_to_wav(audio_file: Path) -> Path:
-    output_path = audio_file.with_suffix('.wav')
+def convert_to_wav(audio_file: Path, output_file: Path | None = None) -> Path:
+    output_path = output_file if output_file else audio_file.with_suffix('.wav')
     console.print(f'[info]Creating {output_path} from {audio_file}...')
     try:
         subprocess.run(

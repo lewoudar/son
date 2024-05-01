@@ -18,6 +18,8 @@ def play(obj: 'Container', sound: Path, loop: bool):
     """
     Run SOUND wav file passed as input.
 
+    If SOUND is not a wav file, a copy with the wav format will be automatically created in the same directory.
+
     \b
     Arguments:
     SOUND       an audio file to play.
