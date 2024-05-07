@@ -1,9 +1,22 @@
 [tool.poetry]
 name = "son"
 version = "0.1.0"
-description = ""
+description = "A terminal audio player"
 authors = ["le_woudar <rollandkev@yahoo.fr>"]
 readme = "README.md"
+
+classifiers = [
+    "Intended Audience :: Developers",
+    "Topic :: Terminals",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: Implementation :: PyPy"
+]
+
+packages = [
+    { include = "son" }
+]
+
+include = ["son/sounds/alarm.wav"]
 
 [tool.poetry.dependencies]
 python = "^3.11"

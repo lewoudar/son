@@ -1,8 +1,9 @@
 from pathlib import Path
+
 import click
 
-from son.media import convert_to_wav
 from son.console import console
+from son.media import convert_to_wav
 
 
 @click.command('to-wav')

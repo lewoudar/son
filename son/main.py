@@ -3,6 +3,7 @@ from click_didyoumean import DYMGroup
 
 from son.commands.completion import install_completion
 from son.commands.play import play
+from son.commands.pomodoro import pomodoro
 from son.commands.to_wav import to_wav
 from son.settings import Settings
 
@@ -39,10 +40,10 @@ def cli(context: click.Context):
 
     \b
     # start a pomodoro session
-    $ son pomodoro start
+    $ son pomodoro
     """
     context.obj = Container()
 
 
-for command in [install_completion, play, to_wav]:
+for command in [install_completion, play, to_wav, pomodoro]:
     cli.add_command(command)

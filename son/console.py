@@ -3,7 +3,7 @@ import time
 from pathlib import Path
 
 from rich.console import Console
-from rich.progress import track
+from rich.progress import Progress
 from rich.style import Style
 from rich.theme import Theme
 
@@ -23,5 +23,8 @@ def show_play_progress(duration: float, filename: Path, transient: bool = False)
     # a fraction of a second is not really important, we just consider the lower integer
     # value for simplicity
     duration = math.floor(duration)
-    for _ in track(range(duration), total=duration, description=f'Playing {filename}', transient=transient):
-        time.sleep(1)
+    with Progress(console=console, transient=transient) as progress:
+        task = progress.add_task(f'[info]Playing {filename}', total=duration)
+        while not progress.finished:
+            progress.update(task, advance=1)
+            time.sleep(1)

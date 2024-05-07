@@ -1,11 +1,11 @@
 # ruff: noqa: S603, S607
+import platform
 import re
 import subprocess
 from datetime import datetime, timedelta
 from pathlib import Path
-import platform
 
-from son.console import error_console, console
+from son.console import console, error_console
 from son.settings import Settings
 
 

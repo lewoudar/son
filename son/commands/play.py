@@ -1,10 +1,11 @@
 from pathlib import Path
 from typing import TYPE_CHECKING
+
 import click
 import nava
 
 from son.console import show_play_progress
-from son.media import get_media_duration, get_compatible_nava_file_or_raise_error
+from son.media import get_compatible_nava_file_or_raise_error, get_media_duration
 
 if TYPE_CHECKING:
     from son.main import Container
