@@ -1,16 +1,27 @@
 import click
+import platformdirs
+from alchemical import Alchemical
 from click_didyoumean import DYMGroup
 
 from son.commands.completion import install_completion
 from son.commands.play import play
 from son.commands.pomodoro import pomodoro
 from son.commands.to_wav import to_wav
+from son.commands.playlist import playlist
+from son.console import console
 from son.settings import Settings
 
 
 class Container:
     def __init__(self):
         self.settings = Settings()
+        son_data_dir = platformdirs.user_data_path(appname='son')
+        db_path = son_data_dir / 'son.db'
+        self.db = Alchemical(f'sqlite:///{db_path}')
+        if not son_data_dir.exists():
+            son_data_dir.mkdir(parents=True, exist_ok=True)
+            console.print(f'[info]Initializing database at {db_path}')
+            self.db.create_all()
 
 
 @click.version_option('0.1.0', message='%(prog)s version %(version)s')
@@ -45,5 +56,5 @@ def cli(context: click.Context):
     context.obj = Container()
 
 
-for command in [install_completion, play, to_wav, pomodoro]:
+for command in [install_completion, play, to_wav, pomodoro, playlist]:
     cli.add_command(command)

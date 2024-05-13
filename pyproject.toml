@@ -26,6 +26,9 @@ shellingham = "^1.5.4"
 nava = "^0.5"
 rich = "^13.7.1"
 pydantic-settings = "^2.2.1"
+alchemical = "^1.0.2"
+platformdirs = "^4.2.1"
+rapidfuzz = "^3.9.0"
 
 [tool.poetry.scripts]
 son = "son.main:cli"
