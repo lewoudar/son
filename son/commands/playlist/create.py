@@ -64,7 +64,7 @@ def create(obj: 'Container', name: str, songs: tuple[Path], song_folders: tuple[
 
     \b
     Arguments:
-        NAME   the name of the playlist.
+        NAME    the name of the playlist.
 
     Example Usage:
 

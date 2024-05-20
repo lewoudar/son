@@ -4,9 +4,8 @@ from typing import TYPE_CHECKING
 import click
 from rich.panel import Panel
 
+from son.commands.playlist.utils import get_playlist_or_raise_error, get_printable_datetime, print_table
 from son.console import console
-
-from .utils import get_playlist_or_raise_error, get_printable_datetime, print_table
 
 if TYPE_CHECKING:
     from son.main import Container
@@ -27,7 +26,7 @@ def print_panel(title: str, fields: dict[str, str]) -> None:
 @click.pass_obj
 def describe(obj: 'Container', name: str):
     """
-    Describe a playlist.
+    Describes a playlist.
 
     \b
     Arguments:
