@@ -74,7 +74,8 @@ def create(obj: 'Container', name: str, songs: tuple[Path], song_folders: tuple[
     $ son playlist create my-playlist -i
     """
     playlist_id = create_playlist(name, obj.db)
+    console.print(f'[success]Playlist [bold]{name}[/] created. :glowing_star:')
+
     add_songs_and_folders(obj.db, playlist_id, songs, song_folders)
     if interactive:
         add_songs_and_folders_interactively(obj.db, playlist_id)
-    console.print(f'[success]Playlist [bold]{name}[/] created. :glowing_star:')

@@ -21,6 +21,22 @@ def print_panel(title: str, fields: dict[str, str]) -> None:
     console.print(Panel.fit(text_to_render, title=title, border_style='bold #FFD700'))
 
 
+def get_printable_duration(duration: int) -> str:
+    minutes, seconds = divmod(duration, 60)
+    # Calculate hours and minutes
+    hours, minutes = divmod(minutes, 60)
+
+    # Generate formatted time string
+    time_str = ''
+    if hours > 0:
+        time_str += f'{hours}h'
+    if minutes > 0:
+        time_str += f'{minutes}m'
+    if seconds > 0:
+        time_str += f'{seconds}s'
+    return time_str
+
+
 @click.command()
 @click.argument('name')
 @click.pass_obj
@@ -43,6 +59,13 @@ def describe(obj: 'Container', name: str):
         rows = []
         for song in playlist.songs:
             song_path = Path(song.path)
-            rows.append((song_path.stem, song.path, get_printable_datetime(song.created_at)))
+            rows.append(
+                (
+                    song_path.stem,
+                    song.path,
+                    get_printable_datetime(song.created_at),
+                    get_printable_duration(song.duration),
+                )
+            )
 
-        print_table('Songs', ('title', 'path', 'creation date'), rows)
+        print_table('Songs', ('title', 'path', 'creation date', 'duration'), rows)

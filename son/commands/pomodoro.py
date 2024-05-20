@@ -131,7 +131,7 @@ def pomodoro(
     $ son pomodoro -l 2
 
     \b
-    # starts a pomodoro session with a alarm sound file different than the default one.
+    # starts a pomodoro session with an alarm sound file different from the default one.
     $ son pomodoro -s my_custom_alarm.wav
 
     \b
@@ -143,7 +143,6 @@ def pomodoro(
     # start a "short break" pomodoro activity with a duration of 2 minutes instead of 5. Time is in seconds.
     $ son pomodoro -a sb -d 120
     """
-    activity_type = activity_type.lower()
     if duration is not None and activity_type in ACTIVITY_CHOICES[:2]:
         error_console.print('[error] You cannot set a duration for "session" activity.')
         raise SystemExit(1)

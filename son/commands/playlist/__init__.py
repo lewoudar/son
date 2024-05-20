@@ -6,6 +6,7 @@ from .create import create
 from .delete import delete
 from .describe import describe
 from .list import list_playlists
+from .play import play
 from .remove_songs import remove_songs
 from .rename import rename
 
@@ -17,5 +18,5 @@ def playlist():
     """
 
 
-for command in [create, list_playlists, delete, clear, describe, rename, add_songs, remove_songs]:
+for command in [create, list_playlists, delete, clear, describe, rename, add_songs, remove_songs, play]:
     playlist.add_command(command)

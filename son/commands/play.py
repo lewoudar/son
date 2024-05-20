@@ -40,7 +40,7 @@ def play(obj: 'Container', sound: Path, loop: bool):
     sound_duration = get_media_duration(sound)
     if loop:
         while True:
-            show_play_progress(sound_duration, sound, transient=True)
+            show_play_progress(sound_duration, f'[bold]{sound}[/]', transient=True)
     else:
-        show_play_progress(sound_duration, sound)
+        show_play_progress(sound_duration, f'[bold]{sound}[/]')
     nava.stop(sound_id)

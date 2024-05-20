@@ -1,4 +1,5 @@
 # ruff: noqa: S603, S607
+import math
 import platform
 import re
 import subprocess
@@ -21,12 +22,14 @@ def get_seconds_from_str_time(str_time: str) -> float:
     return delta.total_seconds()
 
 
-def get_media_duration(audio_file: Path) -> float:
+def get_media_duration(audio_file: Path) -> int:
     result = subprocess.run(['ffmpeg', '-i', audio_file], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     output = result.stdout.decode()
     matches = re.search(r'Duration: (\d{2}:\d{2}:\d{2}.\d{2})', output)
     if matches:
-        return get_seconds_from_str_time(matches.group(1))
+        # a fraction of a second is not really important, we just consider the lower integer
+        # value for simplicity
+        return math.floor(get_seconds_from_str_time(matches.group(1)))
 
     error_console.print(f'[error]Unable not parse duration for file: [bold]{audio_file}[/], ffmpeg output\n: {output}')
     raise SystemExit(1)

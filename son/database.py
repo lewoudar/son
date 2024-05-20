@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from alchemical import Model
-from sqlalchemy import DateTime, ForeignKey, String, UniqueConstraint, func
+from sqlalchemy import DateTime, ForeignKey, Integer, String, UniqueConstraint, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 
@@ -24,6 +24,7 @@ class Song(Model):
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), nullable=False, index=True, default=func.now()
     )
+    duration: Mapped[int] = mapped_column(Integer, nullable=False)
     playlist_id: Mapped[int] = mapped_column(ForeignKey('playlist.id'))
     playlist: Mapped['Playlist'] = relationship(back_populates='songs')
 

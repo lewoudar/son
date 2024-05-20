@@ -11,6 +11,7 @@ from sqlalchemy.orm import Session, selectinload
 
 from son.console import console, error_console
 from son.database import Playlist, Song
+from son.media import get_media_duration
 
 if TYPE_CHECKING:
     pass
@@ -49,7 +50,8 @@ def add_songs_to_db(db: Alchemical, playlist_id: int, songs: Iterable[Path]) -> 
         try:
             with db.begin() as session:
                 song = song.resolve()
-                session.add(Song(path=song.as_posix(), playlist_id=playlist_id))
+                duration = get_media_duration(song)
+                session.add(Song(path=song.as_posix(), playlist_id=playlist_id, duration=duration))
         except IntegrityError:
             console.print(f':cross_mark: [warning]Song [bold]{song}[/] already exists and was not added.')
             continue
