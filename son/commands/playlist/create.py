@@ -5,7 +5,7 @@ import click
 from alchemical import Alchemical
 from sqlalchemy.exc import IntegrityError
 
-from son.commands.playlist.utils import add_songs_to_db
+from son.commands.playlist.utils import add_songs_and_folders, add_songs_and_folders_interactively
 from son.console import console, error_console
 from son.database import Playlist
 
@@ -43,8 +43,11 @@ def create_playlist(name: str, db: Alchemical) -> int:
     type=click.Path(exists=True, file_okay=False, path_type=Path),
     help='Folder containing songs to add to the playlist. Only ".wav" files will be found and added.',
 )
+@click.option(
+    '-i', '--interactive', is_flag=True, default=False, help='Choose songs to add from the file explorer input.'
+)
 @click.pass_obj
-def create(obj: 'Container', name: str, songs: tuple[Path], song_folders: tuple[Path]):
+def create(obj: 'Container', name: str, songs: tuple[Path], song_folders: tuple[Path], interactive: bool):
     """
     Creates a playlist with songs passed as input.
 
@@ -65,10 +68,13 @@ def create(obj: 'Container', name: str, songs: tuple[Path], song_folders: tuple[
     \b
     # we can combine direct songs and songs from folders
     $ son playlist create my-playlist -f folder1 -f folder2 -s song1.wav -s song2.wav
+
+    \b
+    # create a playlist with songs added interactively
+    $ son playlist create my-playlist -i
     """
     playlist_id = create_playlist(name, obj.db)
-    add_songs_to_db(obj.db, playlist_id, songs)
-    for folder in song_folders:
-        add_songs_to_db(obj.db, playlist_id, folder.rglob('*.wav'))
-
+    add_songs_and_folders(obj.db, playlist_id, songs, song_folders)
+    if interactive:
+        add_songs_and_folders_interactively(obj.db, playlist_id)
     console.print(f'[success]Playlist [bold]{name}[/] created. :glowing_star:')
