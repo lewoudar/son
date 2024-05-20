@@ -1,4 +1,3 @@
-from collections.abc import Iterable
 from pathlib import Path
 from typing import TYPE_CHECKING
 
@@ -6,8 +5,9 @@ import click
 from alchemical import Alchemical
 from sqlalchemy.exc import IntegrityError
 
+from son.commands.playlist.utils import add_songs_to_db
 from son.console import console, error_console
-from son.database import Playlist, Song
+from son.database import Playlist
 
 if TYPE_CHECKING:
     from son.main import Container
@@ -23,20 +23,6 @@ def create_playlist(name: str, db: Alchemical) -> int:
     except IntegrityError:
         error_console.print(f'[error]Playlist [bold]{name}[/] already exists.')
         raise SystemExit(1) from None
-
-
-def create_songs(db: Alchemical, playlist_id: int, songs: Iterable[Path]) -> None:
-    # it is not efficient to use one transaction per song, but it is convenient to print
-    # accurate error message and prevent stopping the loop for one duplicated song
-    for song in songs:
-        try:
-            with db.begin() as session:
-                song = song.resolve()
-                session.add(Song(path=song.as_posix(), playlist_id=playlist_id))
-        except IntegrityError:
-            console.print(f':cross_mark: [warning]Song [bold]{song}[/] already exists and was not added.')
-            continue
-        console.print(f':heavy_check_mark:  Song [info]{song}[/] was added to playlist.')
 
 
 @click.command()
@@ -81,8 +67,8 @@ def create(obj: 'Container', name: str, songs: tuple[Path], song_folders: tuple[
     $ son playlist create my-playlist -f folder1 -f folder2 -s song1.wav -s song2.wav
     """
     playlist_id = create_playlist(name, obj.db)
-    create_songs(obj.db, playlist_id, songs)
+    add_songs_to_db(obj.db, playlist_id, songs)
     for folder in song_folders:
-        create_songs(obj.db, playlist_id, folder.rglob('*.wav'))
+        add_songs_to_db(obj.db, playlist_id, folder.rglob('*.wav'))
 
     console.print(f'[success]Playlist [bold]{name}[/] created. :glowing_star:')

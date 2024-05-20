@@ -52,7 +52,9 @@ def handle_non_interactive_song_removal(obj: 'Container', playlist_name: str, so
 def handle_interactive_song_removal(obj: 'Container', playlist_name: str) -> None:
     with obj.db.begin() as session:
         playlist = get_playlist_or_raise_error(playlist_name, session, select_songs=True)
-        song_paths = questionary.checkbox('Select songs to remove', [song.path for song in playlist.songs]).ask()
+        song_paths = questionary.checkbox(
+            'Select songs to remove:', [song.path for song in playlist.songs], qmark='>'
+        ).ask()
         if not song_paths:
             console.print('[warning]No songs were selected, so nothing to do. :person_shrugging:')
             return
@@ -77,7 +79,7 @@ def handle_interactive_song_removal(obj: 'Container', playlist_name: str) -> Non
 @click.pass_obj
 def remove_songs(obj: 'Container', name: str, songs: set[str], interactive: bool):
     """
-    Removes songs from given playlist.
+    Removes songs from the given playlist.
 
     \b
     Arguments:
