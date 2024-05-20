@@ -1,8 +1,8 @@
 from datetime import datetime
 
 from alchemical import Model
+from sqlalchemy import DateTime, ForeignKey, String, UniqueConstraint, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import String, DateTime, ForeignKey, func, UniqueConstraint
 
 
 class Playlist(Model):

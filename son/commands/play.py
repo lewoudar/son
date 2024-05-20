@@ -23,7 +23,7 @@ def play(obj: 'Container', sound: Path, loop: bool):
 
     \b
     Arguments:
-    SOUND       an audio file to play.
+        SOUND       an audio file to play.
 
     \b
     Example usage:

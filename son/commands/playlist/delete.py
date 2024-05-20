@@ -2,8 +2,8 @@ from typing import TYPE_CHECKING
 
 import click
 
-from son.console import console
 from son.commands.playlist.utils import get_playlist_or_raise_error
+from son.console import console
 
 if TYPE_CHECKING:
     from son.main import Container

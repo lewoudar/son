@@ -1,30 +1,14 @@
-from datetime import datetime
-from typing import TYPE_CHECKING, Iterable
+from typing import TYPE_CHECKING
 
 import click
-from rapidfuzz import process, fuzz, utils
-from rich.table import Table
+from rapidfuzz import fuzz, process, utils
 
-from son.console import console
 from son.database import Playlist
+
+from .utils import get_printable_datetime, print_table
 
 if TYPE_CHECKING:
     from son.main import Container
-
-
-def print_table(title: str, headers: tuple[str, ...], rows: Iterable[tuple[str, ...]]) -> None:
-    table = Table(title=title, title_style='cyan')
-    for header in headers:
-        table.add_column(header, header_style='bold magenta')
-
-    for row in rows:
-        table.add_row(*row)
-
-    console.print(table)
-
-
-def get_printable_datetime(dt: datetime | None) -> str:
-    return dt.isoformat() if dt is not None else ''
 
 
 @click.command('list')
@@ -73,4 +57,4 @@ def list_playlists(obj: 'Container', name: str, count: int):
         rows = (playlists_info[playlist_name] for playlist_name, score, index in results)
     else:
         rows = (row for row in playlists_info.values())
-    print_table('Playlists', ('name', 'created_at', 'updated_at'), rows)
+    print_table('Playlists', ('name', 'creation date', 'last update'), rows)

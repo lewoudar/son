@@ -5,9 +5,9 @@ from click_didyoumean import DYMGroup
 
 from son.commands.completion import install_completion
 from son.commands.play import play
+from son.commands.playlist import playlist
 from son.commands.pomodoro import pomodoro
 from son.commands.to_wav import to_wav
-from son.commands.playlist import playlist
 from son.console import console
 from son.settings import Settings
 
@@ -46,8 +46,8 @@ def cli(context: click.Context):
     $ son playlist create -n "my playlist" -s "sound_1.wav" -s "sound_2.wav"
 
     \b
-    # update a playlist
-    $ son playlist update -n "my playlist" -a "sound_3.wav" -d "sound_2.wav"
+    # add songs to a playlist
+    $ son playlist add-songs "my playlist" -s "sound_3.wav" -s "sound_2.wav"
 
     \b
     # start a pomodoro session

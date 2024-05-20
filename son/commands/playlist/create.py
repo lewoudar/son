@@ -1,5 +1,6 @@
+from collections.abc import Iterable
 from pathlib import Path
-from typing import TYPE_CHECKING, Iterable
+from typing import TYPE_CHECKING
 
 import click
 from alchemical import Alchemical
@@ -31,7 +32,7 @@ def create_songs(db: Alchemical, playlist_id: int, songs: Iterable[Path]) -> Non
         try:
             with db.begin() as session:
                 song = song.resolve()
-                session.add(Song(path=str(song), playlist_id=playlist_id))
+                session.add(Song(path=song.as_posix(), playlist_id=playlist_id))
         except IntegrityError:
             console.print(f':cross_mark: [warning]Song [bold]{song}[/] already exists and was not added.')
             continue
@@ -80,7 +81,8 @@ def create(obj: 'Container', name: str, songs: tuple[Path], song_folders: tuple[
     $ son playlist create my-playlist -f folder1 -f folder2 -s song1.wav -s song2.wav
     """
     playlist_id = create_playlist(name, obj.db)
-    console.print(f'[success]Playlist [bold]{name}[/] created. :glowing_star:')
     create_songs(obj.db, playlist_id, songs)
     for folder in song_folders:
         create_songs(obj.db, playlist_id, folder.rglob('*.wav'))
+
+    console.print(f'[success]Playlist [bold]{name}[/] created. :glowing_star:')
