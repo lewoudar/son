@@ -594,7 +594,7 @@ virtualenv = ">=20.10.0"
 name = "prompt-toolkit"
 version = "3.0.36"
 description = "Library for building powerful interactive command lines in Python"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6.2"
 files = [
@@ -831,7 +831,7 @@ files = [
 name = "questionary"
 version = "2.0.1"
 description = "Python library to build pretty command line user prompts ⭐️"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.8"
 files = [
@@ -1174,7 +1174,7 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 name = "wcwidth"
 version = "0.2.13"
 description = "Measures the displayed width of unicode strings in a terminal"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 files = [
@@ -1201,4 +1201,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "jaraco.test", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "872d1b669ea9b37f4b7910e58d7f23fce56fab940291af7b481da07b422f025c"
+content-hash = "1d0be6cf8dbd6ee2be19804957b230e1cadc889f2733c6df6b7bd1fbbab061a0"
