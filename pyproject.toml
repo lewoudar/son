@@ -4,6 +4,12 @@ version = "0.1.0"
 description = "A terminal audio player"
 authors = ["le_woudar <rollandkev@yahoo.fr>"]
 readme = "README.md"
+readme = "README.md"
+license = "Apache-2.0"
+keywords = ["nava", "cli", "terminal", "sound", "click"]
+
+repository = "https://github.com/lewoudar/son"
+documentation = "https://github.com/lewoudar/son"
 
 classifiers = [
     "Intended Audience :: Developers",
@@ -17,6 +23,10 @@ packages = [
 ]
 
 include = ["son/sounds/alarm.wav"]
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/lewoudar/son/issues"
+"Changelog" = "https://github.com/lewoudar/son/blob/main/CHANGELOG.md
 
 [tool.poetry.dependencies]
 python = "^3.11"
