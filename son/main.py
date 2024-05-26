@@ -32,8 +32,9 @@ def cli(context: click.Context):
     An audio player capable of:
 
     \b
-    - creating/managing playlists
-    - manage your work time with pomodoro
+    - playing sounds
+    - managing playlists
+    - managing your work time with pomodoro
 
     Example usage:
 

@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 @click.command()
 @click.pass_obj
 def clear(obj: 'Container'):
-    """Clear the playlist database."""
+    """Clears the playlist database."""
     with obj.db.begin() as session:
         session.execute(Playlist.delete())
         session.execute(Song.delete())

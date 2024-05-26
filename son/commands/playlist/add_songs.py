@@ -37,11 +37,29 @@ if TYPE_CHECKING:
 @click.pass_obj
 def add_songs(obj: 'Container', name: str, songs: tuple[Path], song_folders: tuple[Path], interactive: bool):
     """
-    Add songs to the given playlist.
+    Adds songs to the given playlist.
 
     \b
     Arguments:
         NAME    The name of the playlist.
+
+    Example usage:
+
+    \b
+    # adds two songs to the playlist my-playlist
+    $ son playlist add-songs my-playlist -s song1.wav -s song2.wav
+
+    \b
+    # adds songs from the folder song_folder to the playlist my-playlist
+    $ son playlist add-songs my-playlist -f song_folder
+
+    \b
+    # we can combine direct songs and songs from folders
+    $ son playlist add-songs my-playlist -f folder1 -f folder2 -s song1.wav -s song2.wav
+
+    \b
+    # adds songs interactively
+    $ son playlist add-songs my-playlist -i
     """
     with obj.db.Session() as session:
         playlist = get_playlist_or_raise_error(name, session)

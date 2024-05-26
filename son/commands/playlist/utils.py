@@ -1,7 +1,6 @@
 from collections.abc import Iterable
 from datetime import datetime
 from pathlib import Path
-from typing import TYPE_CHECKING
 
 import questionary
 from alchemical import Alchemical
@@ -12,9 +11,6 @@ from sqlalchemy.orm import Session, selectinload
 from son.console import console, error_console
 from son.database import Playlist, Song
 from son.media import get_media_duration
-
-if TYPE_CHECKING:
-    pass
 
 
 def get_playlist_or_raise_error(name: str, session: Session, select_songs: bool = False) -> Playlist:

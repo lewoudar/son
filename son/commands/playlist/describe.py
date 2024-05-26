@@ -47,6 +47,10 @@ def describe(obj: 'Container', name: str):
     \b
     Arguments:
         NAME    the name of the playlist.
+
+    Example usage:
+
+    $ son playlist describe my-playlist
     """
     with obj.db.Session() as session:
         playlist = get_playlist_or_raise_error(name, session, select_songs=True)

@@ -17,13 +17,15 @@ if TYPE_CHECKING:
 @click.pass_obj
 def play(obj: 'Container', sound: Path, loop: bool):
     """
-    Run SOUND wav file passed as input.
+    Plays SOUND wav file passed as input.
 
-    If SOUND is not a wav file, a copy with the wav format will be automatically created in the same directory.
+    If SOUND is not a wav file, a copy with the wav format will be automatically created in the same directory if
+    "auto_conversion" setting is set to true. You can control this setting with the environment variable
+    SON_AUTO_CONVERSION. Values "true", "yes", "on" mean true and values "false", "no", "off" mean false.
 
     \b
     Arguments:
-        SOUND       an audio file to play.
+        SOUND    an audio file to play.
 
     \b
     Example usage:

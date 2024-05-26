@@ -81,9 +81,26 @@ def remove_songs(obj: 'Container', name: str, songs: set[str], interactive: bool
     """
     Removes songs from the given playlist.
 
+    Note: you cannot pass songs as input and use the interactive mode. You MUST choose one option.
+
     \b
     Arguments:
         NAME    The name of the playlist.
+
+    Example usage:
+
+    \b
+    # Removes songs with full path specified as input, Windows case
+    # Note that we don't use the anti-slash to specify the song path.
+    $ son playlist rm-songs -s C:/Users/foo/song1.wav -s C/Users/foo/song2.wav
+
+    \b
+    # Linux/Unix case
+    $ son playlist rm-songs -s /home/foo/song1.wav -s /home/foo/song2.wav
+
+    \b
+    $ Removes songs using a form displaying playlist songs.
+    $ son playlist rm-songs -i
     """
     if songs and interactive:
         error_console.print('[error]You cannot use interactive mode and passed songs to remove.')

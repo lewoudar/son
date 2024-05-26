@@ -66,7 +66,7 @@ def create(obj: 'Container', name: str, songs: tuple[Path], song_folders: tuple[
     $ son playlist create my-playlist -f song_folder
 
     \b
-    # we can combine direct songs and songs from folders
+    # You can combine direct songs and songs from folders
     $ son playlist create my-playlist -f folder1 -f folder2 -s song1.wav -s song2.wav
 
     \b

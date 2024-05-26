@@ -112,10 +112,10 @@ def pomodoro(
     There are four types of activities you can run:
 
     \b
-    - "work" (w) - it is a work session of 25 minutes by default unless you configure the duration.
-    - "short break" (sb) - it comes after a "work" activity, it defaults to 5 minutes.
-    - "long break" (lb) - it comes after 3 "work/short break" activities and defaults to 15 minutes.
-    - "session" (s) - a series of 3 "work/short break" activities plus a long break. This is the default activity.
+    • "work" (w) - it is a work session of 25 minutes by default unless you configure the duration.
+    • "short break" (sb) - it comes after a "work" activity, it defaults to 5 minutes.
+    • "long break" (lb) - it comes after 3 "work/short break" activities and defaults to 15 minutes.
+    • "session" (s) - a series of 3 "work/short break" activities plus a long break. This is the default activity.
 
     For more information about the pomodoro technique, you can read this wikipedia page:
     https://en.wikipedia.org/wiki/Pomodoro_Technique

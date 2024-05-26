@@ -17,7 +17,17 @@ def to_wav(audio_file: Path, output_file: Path):
 
     \b
     Arguments:
-    AUDIO_FILE      an audio file to convert in wav format.
+        AUDIO_FILE    an audio file to convert in wav format.
+
+    Example usage:
+
+    \b
+    # creates song.wav from song.mp3
+    $ son to-wav song.mp3
+
+    \b
+    # creates output.wav from input.mp3
+    $ son to-wav input.mp3 -o output.wav
     """
     output_path = convert_to_wav(audio_file, output_file)
     console.print(f'[success]Wav file [italic bold]{output_path}[/] was successfully created!')

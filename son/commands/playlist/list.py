@@ -28,12 +28,15 @@ def list_playlists(obj: 'Container', name: str, count: int):
 
     Example Usage:
 
+    \b
+    # lists all playlists
     $ son playlist list
 
     \b
-    # filter playlists by name.
-    $ son playlist list my-playlist -n name
+    # filters playlists by name.
+    $ son playlist list -n name
 
+    \b
     # Since the search is a fuzzy one, you can limit the number of playlists returned, by default it is 10.
     $ son playlist list my-playlist -n name -c 5
     """

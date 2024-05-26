@@ -46,11 +46,11 @@ def play(obj: 'Container', name: str, shuffle: bool, loop: bool):
     $ son playlist play my-playlist
 
     \b
-    # Play songs in random order
+    # Plays songs in random order
     $ son playlist play my-playlist --shuffle
 
     \b
-    # Play songs in loop
+    # Plays songs in loop
     $ son playlist play my-playlist --loop
 
     \b

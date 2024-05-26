@@ -23,6 +23,12 @@ def rename(obj: 'Container', old_name: str, new_name: str):
     Arguments:
         OLD_NAME    the old name of the playlist.
         NEW_NAME    the new name of the playlist.
+
+    Example usage:
+
+    \b
+    # Renames playlist from acoustic to RnB
+    $ son playlist rename acoustic RnB
     """
     with obj.db.begin() as session:
         get_playlist_or_raise_error(old_name, session)

@@ -67,6 +67,7 @@ def _install_completion(shell: str) -> None:
 def install_completion():
     """
     Install completion script for bash, zsh and fish shells.
+
     You will need to restart the shell for the changes to be loaded.
     """
     try:
